@@ -1,2 +1,1 @@
-# DSE
-Deterministic Sampling Ensemble
+# Deterministic Sampling Ensemble
