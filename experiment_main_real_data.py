@@ -94,102 +94,109 @@ for base_classifier, experiment_name in zip(base_classifiers, experiment_names):
                ]
 
     step_sizes = [
-                  250,
-                  500,
-                  100,
-                  100,
-                  50,
-                  250,
-                  250,
-                  500,
-                  100,
-                  100,
-                  100,
-                  150,
-                  150,
-                  50,
-                  50,
-                  50,
-                  52,
-                  30,
-                  30,
-                  30,
-                  100,
-                  100,
-                  100,
-                  70,
-                  60,
-                  60,
-                  500,
-                  500,
-                  500,
-                  500,
+                  # 250,
+                  # 500,
+                  # 100,
+                  # 100,
+                  # 50,
+                  # 250,
+                  # 250,
+                  # 500,
+                  # 100,
+                  # 100,
+                  # 100,
+                  # 150,
+                  # 150,
+                  # 50,
+                  # 50,
+                  # 50,
+                  # 52,
+                  # 30,
+                  # 30,
+                  # 30,
+                  # 100,
+                  # 100,
+                  # 100,
+                  # 70,
+                  # 60,
+                  # 60,
+                  # 500,
+                  # 500,
+                  # 500,
+                  # 500,
+                  1000,
+                  1000,
                   ]
 
     initial_sizes = [
-                     500,
-                     1000,
-                     200,
-                     200,
-                     100,
-                     500,
-                     500,
-                     1000,
-                     200,
-                     200,
-                     200,
-                     300,
-                     300,
-                     100,
-                     100,
-                     100,
-                     52,
-                     60,
-                     60,
-                     60,
-                     200,
-                     200,
-                     200,
-                     140,
-                     120,
-                     120,
-                     1000,
-                     1000,
-                     1000,
-                     1000,
+                     # 500,
+                     # 1000,
+                     # 200,
+                     # 200,
+                     # 100,
+                     # 500,
+                     # 500,
+                     # 1000,
+                     # 200,
+                     # 200,
+                     # 200,
+                     # 300,
+                     # 300,
+                     # 100,
+                     # 100,
+                     # 100,
+                     # 52,
+                     # 60,
+                     # 60,
+                     # 60,
+                     # 200,
+                     # 200,
+                     # 200,
+                     # 140,
+                     # 120,
+                     # 120,
+                     # 1000,
+                     # 1000,
+                     # 1000,
+                     # 1000,
+                     2000,
+                     2000,
                     ]
 
     streams = []                                                # step init
-    streams += ["real/abalone-17_vs_7-8-9-10"]                  # 250 500
-    streams += ["real/elecNormNew"]                             # 500 1000
-    streams += ["real/jm1"]                                     # 100 200
-    streams += ["real/kc1"]                                     # 100 200
-    streams += ["real/kc2"]                                     # 50 100
-    streams += ["real/kr-vs-k-three_vs_eleven"]                 # 250 500
-    streams += ["real/kr-vs-k-zero-one_vs_draw"]                # 250 500
-    streams += ["real/page-blocks0"]                            # 500 1000
-    streams += ["real/segment0"]                                # 100 200
-    streams += ["real/shuttle-1vs4"]                            # 100 200
-    streams += ["real/vehicle0"]                                # 100 200
-    streams += ["real/yeast1"]                                  # 150 300
-    streams += ["real/yeast3"]                                  # 150 300
-    streams += ["real/wisconsin"]                               # 50 100
-    streams += ["real/australian"]                              # 50 100
-    streams += ["real/pima"]                                    # 50 100
-    streams += ["real/heart"]                                   # 52 52
-    streams += ["real/glass0"]                                  # 30 60
-    streams += ["real/glass-0-1-2-3_vs_4-5-6"]                  # 30 60
-    streams += ["real/glass1"]                                  # 30 60
-    streams += ["real/yeast-0-2-5-7-9_vs_3-6-8"]                # 100 200
-    streams += ["real/vowel0"]                                  # 100 200
-    streams += ["real/yeast-0-2-5-6_vs_3-7-8-9"]                # 100 200
-    streams += ["real/yeast-0-3-5-9_vs_7-8"]                    # 70 140
-    streams += ["real/yeast-2_vs_4"]                            # 60 120
-    streams += ["real/yeast-0-5-6-7-9_vs_4"]                    # 60 120
-    streams += ["real/shuttle-5vsA"]                            # 500 1000
-    streams += ["real/shuttle-1vsA"]                            # 500 1000
-    streams += ["real/shuttle-4-5vsA"]                          # 500 1000
-    streams += ["real/shuttle-4vsA"]                            # 500 1000
+    # streams += ["real/abalone-17_vs_7-8-9-10"]                  # 250 500
+    # streams += ["real/elecNormNew"]                             # 500 1000
+    # streams += ["real/jm1"]                                     # 100 200
+    # streams += ["real/kc1"]                                     # 100 200
+    # streams += ["real/kc2"]                                     # 50 100
+    # streams += ["real/kr-vs-k-three_vs_eleven"]                 # 250 500
+    # streams += ["real/kr-vs-k-zero-one_vs_draw"]                # 250 500
+    # streams += ["real/page-blocks0"]                            # 500 1000
+    # streams += ["real/segment0"]                                # 100 200
+    # streams += ["real/shuttle-1vs4"]                            # 100 200
+    # streams += ["real/vehicle0"]                                # 100 200
+    # streams += ["real/yeast1"]                                  # 150 300
+    # streams += ["real/yeast3"]                                  # 150 300
+    # streams += ["real/wisconsin"]                               # 50 100
+    # streams += ["real/australian"]                              # 50 100
+    # streams += ["real/pima"]                                    # 50 100
+    # streams += ["real/heart"]                                   # 52 52
+    # streams += ["real/glass0"]                                  # 30 60
+    # streams += ["real/glass-0-1-2-3_vs_4-5-6"]                  # 30 60
+    # streams += ["real/glass1"]                                  # 30 60
+    # streams += ["real/yeast-0-2-5-7-9_vs_3-6-8"]                # 100 200
+    # streams += ["real/vowel0"]                                  # 100 200
+    # streams += ["real/yeast-0-2-5-6_vs_3-7-8-9"]                # 100 200
+    # streams += ["real/yeast-0-3-5-9_vs_7-8"]                    # 70 140
+    # streams += ["real/yeast-2_vs_4"]                            # 60 120
+    # streams += ["real/yeast-0-5-6-7-9_vs_4"]                    # 60 120
+    # streams += ["real/shuttle-5vsA"]                            # 500 1000
+    # streams += ["real/shuttle-1vsA"]                            # 500 1000
+    # streams += ["real/shuttle-4-5vsA"]                          # 500 1000
+    # streams += ["real/shuttle-4vsA"]                            # 500 1000
+
+    streams += ["covtypeNorm-1-2vsAll-pruned"]                  # 1000 2000
+    streams += ["poker-lsn-1-2vsAll-pruned"]                    # 1000 2000
 
     print("Start")
     start = time.time()
