@@ -195,8 +195,8 @@ for base_classifier, experiment_name in zip(base_classifiers, experiment_names):
     # streams += ["real/shuttle-4-5vsA"]                          # 500 1000
     # streams += ["real/shuttle-4vsA"]                            # 500 1000
 
-    streams += ["covtypeNorm-1-2vsAll-pruned"]                  # 1000 2000
-    streams += ["poker-lsn-1-2vsAll-pruned"]                    # 1000 2000
+    streams += ["real/covtypeNorm-1-2vsAll-pruned"]                  # 1000 2000
+    streams += ["real/poker-lsn-1-2vsAll-pruned"]                    # 1000 2000
 
     print("Start")
     start = time.time()
