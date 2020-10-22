@@ -3,10 +3,12 @@
 ---
 
 ![DSE-diagram1](diagrams/DSE-diagram2.png)
-*Deterministic Sampling Ensemble - diagram*
+
+*Deterministic Sampling Ensemble diagram*
 
 ![DSE-diagram1](diagrams/DSE-diagram1.png)
-*Deterministic Sampling - diagram*
+
+*Deterministic Sampling diagram*
 
 ---
 
@@ -44,12 +46,15 @@
 ### Results:
 
 ![O](results/tables/O.png)
+
 *Results of Random Under Sampling combination with oversampling methods.  Darker is better, best value isbold and underscored*
 
 ![SVMS](results/tables/SVMS.png)
+
 *Results of SVMSMOTE combination with undersampling methods.  Darker is better, best value is bold andunderscored*
 
 ![NCR](results/tables/NCR.png)
+
 *Results of NCR combination with oversampling methods. Darker is better, best value is bold and underscored*
 
 ---
@@ -88,7 +93,8 @@
 
 ### Results:
 
-![BALANCE](/home/jklik/dev/DSE/results/tables/BALANCE.png)
+![BALANCE](results/tables/BALANCE.png)
+
 *Balance parameter setup experiment. Darker is better, best value bold and underscore*
 
 ---
@@ -131,6 +137,7 @@
 ### Results:
 
 ![noise_exp](results/plots/noise_exp/in_paper/noise_exp.png)
+
 *Selected mean results from noise experiments*
 
 ---
@@ -173,6 +180,7 @@
 ### Results:
 
 ![balance_exp](results/plots/balance_exp/in_paper/balance_exp.png)
+
 *Selected mean results from noise and balance experiments*
 
 ---
@@ -224,9 +232,11 @@
 ### Results:
 
 ![multi_incremental_hbar](results/ranking_plots/multi_incremental_hbar.png)
+
 *Wilcoxon pair rank-sum tests for synthetic data streams with incremental concept drift. Dashed vertical line isa critical value with a confidence level 0.05 (green – win, yellow – tie, red – loss)*
 
 ![multi_sudden_hbar](results/ranking_plots/multi_sudden_hbar.png)
+
 *Wilcoxon pair rank-sum tests for synthetic data streams with sudden concept drift.  Dashed vertical line is acritical value with a confidence level 0.05 (green – win, yellow – tie, red – loss)*
 
 ---
@@ -262,8 +272,10 @@
 
 ### Results:
 
-![covtype](/home/jklik/dev/DSE/results/plots/real/in_paper/covtype.png)
+![covtype](results/plots/real/in_paper/covtype.png)
+
 *F-score metric over the data chunks for covtypeNorm-1-2vsAll data stream with SVM base classifier*
 
-![poker](/home/jklik/dev/DSE/results/plots/real/in_paper/poker.png)
+![poker](results/plots/real/in_paper/poker.png)
+
 *F-score metric over the data chunks for poker-lsn-1-2vsAll data stream with SVM base classifier*
