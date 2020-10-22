@@ -15,44 +15,44 @@ streams.sort()
 
 method_names = []
 methods_alias = []
-# for ratio in np.linspace(0.25, 0.75, 11):
-#     method_names.append("DSE-%f" % ratio)
-#     methods_alias.append("%0.2f" % ratio)
+for ratio in np.linspace(0.25, 0.75, 11):
+    method_names.append("DSE-%f" % ratio)
+    methods_alias.append("%0.2f" % ratio)
 
-us_names = [
-        "CNN",
-        "ENN",
-        "RENN",
-        "AllKNN",
-        "IHT",
-        "NM",
-        "NCR",
-        "OSS",
+# us_names = [
+        # "CNN",
+        # "ENN",
+        # "RENN",
+        # "AllKNN",
+        # "IHT",
+        # "NM",
+        # "NCR",
+        # "OSS",
         # "RUS",
-        "TL",
-    ]
+        # "TL",
+    # ]
 
-os_names = [
-        # "ADASYN",
-        # "BSMOTE",
-        # "ROS",
-        # "SMOTE",
-        "SVMSMOTE",
-    ]
+# os_names = [
+#         "ADASYN",
+#         "BSMOTE",
+#         "ROS",
+#         "SMOTE",
+#         "SVMSMOTE",
+#     ]
 
-method_names = []
+# method_names = []
 
-for oname in os_names:
-    for uname in us_names:
-        method_names.append("DSE_"+oname+"-"+uname)
-methods_alias = method_names
+# for oname in os_names:
+#     for uname in us_names:
+#         method_names.append("DSE_"+oname+"-"+uname)
+# methods_alias = method_names
 
 metrics_alias = [
            "Gmean",
            "F-score",
            "Precision",
            "Recall",
-           "Specifity",
+           "Specificity",
           ]
 
 metrics = [
@@ -63,8 +63,8 @@ metrics = [
            "specifity",
           ]
 
-experiment_names = ["ps_s/svm", "ps_s/knn", "ps_s/gnb", "ps_s/dtc"]
-# experiment_names = ["ps_b/svm", "ps_b/knn", "ps_b/gnb", "ps_b/dtc"]
+# experiment_names = ["ps_s/svm", "ps_s/knn", "ps_s/gnb", "ps_s/dtc"]
+experiment_names = ["ps_b/svm", "ps_b/knn", "ps_b/gnb", "ps_b/dtc"]
 
 
 for experiment_name in experiment_names:

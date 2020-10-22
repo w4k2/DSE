@@ -28,10 +28,20 @@ def plot_streams_matplotlib(methods, streams, metrics, experiment_name, gauss=0,
                     data[stream_name, clf_name, metric] = None
                     print("Error in loading data", stream_name, clf_name, metric)
 
+
+    colors = None
+    styles = ["--", "--", "--", "--", "--", "-"]
+    colors = ["gray", "gray", "gray", "gray", "gray", "tab:green"]
+    widths = [1,1,1,1,1,1.5]
+
+    styles = ["--", "--", "--", "--", "--", "-"]
+    colors = ["black", "tab:red", "tab:orange", "tab:cyan", "tab:blue", "tab:green"]
+    widths = [1,1,1,1,1,1.5]
+
     for stream_name in tqdm(streams, "Plotting %s" % experiment_name):
         for metric, metric_a in zip(metrics, metrics_alias):
 
-            for clf_name, method_a in zip(methods, methods_alias):
+            for idx, (clf_name, method_a) in enumerate(zip(methods, methods_alias)):
                 if data[stream_name, clf_name, metric] is None:
                     continue
 
@@ -40,19 +50,28 @@ def plot_streams_matplotlib(methods, streams, metrics, experiment_name, gauss=0,
                 if gauss > 0:
                     plot_data = gaussian_filter1d(plot_data, gauss)
 
-                plt.plot(range(len(plot_data)), plot_data, label=method_a)
+                if colors is None:
+                    plt.plot(range(len(plot_data)), plot_data, label=method_a)
+                else:
+                    plt.plot(range(len(plot_data)), plot_data, label=method_a, linestyle=styles[idx], color=colors[idx], linewidth=widths[idx])
 
-            filename = "results/plots/%s/%s/%s" % (experiment_name, metric, stream_name)
 
-            stream_name_ = "/".join(stream_name.split("/")[0:-1])
+            stream_name_2 = stream_name.split("/")[1]
+            filename = "results/plots/%s_%s_%s" % (stream_name_2, metric, experiment_name)
 
-            if not os.path.exists("results/plots/%s/%s/%s/" % (experiment_name, metric, stream_name_)):
-                os.makedirs("results/plots/%s/%s/%s/" % (experiment_name, metric, stream_name_))
+            # filename = "results/plots/%s/%s/%s" % (experiment_name, metric, stream_name)
+            # stream_name_ = "/".join(stream_name.split("/")[0:-1])
+            # if not os.path.exists("results/plots/%s/%s/%s/" % (experiment_name, metric, stream_name_)):
+            #     os.makedirs("results/plots/%s/%s/%s/" % (experiment_name, metric, stream_name_))
 
-            plt.legend()
+            plt.legend(loc="lower center", ncol=len(methods_alias))
+            # plt.title(metric_a+"     "+experiment_name+"     "+stream_name_2)
             plt.ylabel(metric_a)
+            # plt.ylim(0, 1)
+            plt.xlim(0, len(plot_data)-1)
             plt.xlabel("Data chunk")
             plt.gcf().set_size_inches(10, 5)
+            plt.grid(True, color="silver", linestyle=":")
             plt.savefig(filename+".png", bbox_inches='tight')
             plt.savefig(filename+".eps", format='eps', bbox_inches='tight')
             plt.clf()
