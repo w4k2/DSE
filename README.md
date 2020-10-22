@@ -3,10 +3,10 @@
 ---
 
 ![DSE-diagram1](diagrams/DSE-diagram2.png)
-*Deterministic Sampling Ensemble diagram*
+*Deterministic Sampling Ensemble - diagram*
 
 ![DSE-diagram1](diagrams/DSE-diagram1.png)
-*Deterministic Sampling diagram*
+*Deterministic Sampling - diagram*
 
 ---
 
@@ -29,10 +29,10 @@
 
 ### Data streams:
 
-- Generators: 
+- Generators:
   - [stream-learn](https://w4k2.github.io/stream-learn/)
   - [MOA](https://moa.cms.waikato.ac.nz/)
-- Concept drift: 
+- Concept drift:
   - sudden
   - incremental
 - Objects: 15 000
@@ -74,10 +74,10 @@
 
 ### Data streams:
 
-- Generators: 
+- Generators:
   - [stream-learn](https://w4k2.github.io/stream-learn/)
   - [MOA](https://moa.cms.waikato.ac.nz/)
-- Concept drift: 
+- Concept drift:
   - sudden
   - incremental
 - Objects: 15 000
@@ -207,10 +207,10 @@
 
 ### Data streams:
 
-- Generators: 
+- Generators:
   - [stream-learn](https://w4k2.github.io/stream-learn/)
   - [MOA](https://moa.cms.waikato.ac.nz/)
-- Concept drifts: 
+- Concept drifts:
   - 1 sudden
   - 1 incremental
   - 5 sudden
