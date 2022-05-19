@@ -261,12 +261,14 @@ def plot_streams_nexp(methods, streams, metrics, experiment_name, methods_alias=
 
     width = 1/(len(methods)+1)
 
+    colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:gray']
+
     for metric, metric_a in zip(metrics, metrics_alias):
 
         min = 1
         index = -len(methods)/2+0.5
 
-        for clf_name, method_a in zip(methods, methods_alias):
+        for idx, (clf_name, method_a) in enumerate(zip(methods, methods_alias)):
             plot_data = []
             for stream_name in streams_:
                 rs_data = []
@@ -279,22 +281,22 @@ def plot_streams_nexp(methods, streams, metrics, experiment_name, methods_alias=
             if min > np.min(plot_data):
                 min = np.min(plot_data)
             x = np.arange(len(streams_))
-            plt.bar(x+width*index, plot_data, width, label=method_a)
+            plt.bar(x+width*index, plot_data, width, label=method_a, color=colors[idx])
             # plt.plot(x, plot_data, label=method_a)
             index += 1
 
-        filename = "results/plots/%s/%s" % (experiment_name, metric)
-        if not os.path.exists("results/plots/%s/" % (experiment_name)):
-            os.makedirs("results/plots/%s/" % (experiment_name))
+        filename = "results/plots_new/%s/%s" % (experiment_name, metric)
+        if not os.path.exists("results/plots_new/%s/" % (experiment_name)):
+            os.makedirs("results/plots_new/%s/" % (experiment_name))
 
         plt.legend()
         plt.ylabel(metric_a)
         plt.xlabel("Noise [%]")
-        plt.ylim(bottom=min-0.05)
-        plt.title(metric_a.upper()+" "+experiment_name.split('/')[-1].upper())
-        plt.legend(loc=3)
+        plt.ylim(0, 1)
+        # plt.title(metric_a.upper()+" "+experiment_name.split('/')[-1].upper())
+        plt.legend(loc="upper center", bbox_to_anchor=(0.5, 1.15), ncol=len(methods_alias))
         plt.xticks(range(len(streams_)), labels=noise)
-        plt.gcf().set_size_inches(6, 4)
+        plt.gcf().set_size_inches(7, 4)
         plt.savefig(filename+".png", bbox_inches='tight')
         plt.savefig(filename+".eps", format='eps', bbox_inches='tight')
         plt.clf()
@@ -302,6 +304,158 @@ def plot_streams_nexp(methods, streams, metrics, experiment_name, methods_alias=
 
 
 def plot_streams_bexp(methods, streams, metrics, experiment_name, methods_alias=None, metrics_alias=None):
+    rcdefaults()
+
+    if methods_alias is None:
+        methods_alias = methods
+    if metrics_alias is None:
+        metrics_alias = metrics
+
+    data = {}
+
+    random_states = []
+    streams_ = []
+    noise = []
+    for stream_name in streams:
+        random_states.append(stream_name.split("_")[-1])
+        streams_.append("_".join(stream_name.split("_")[0:-1]))
+        noise.append(stream_name.split("_")[-3][1:])
+
+    random_states = list(dict.fromkeys(random_states))
+    streams_ = list(dict.fromkeys(streams_))
+    noise = list(dict.fromkeys(noise))
+    noise.reverse()
+
+    for stream_name in streams:
+        for clf_name in methods:
+            for metric in metrics:
+                try:
+                    filename = "results/raw_metrics/%s/%s/%s/%s.csv" % (experiment_name, stream_name, metric, clf_name)
+                    data["_".join(stream_name.split("_")[0:-1]), clf_name, metric, stream_name.split("_")[-1]] = np.genfromtxt(filename, delimiter=',', dtype=np.float32)
+                except Exception:
+                    data[stream_name, clf_name, metric] = None
+                    print("Error in loading data", stream_name, clf_name, metric)
+
+    width = 1/(len(methods)+1)
+
+    colors = ['tab:blue', 'tab:orange', 'tab:green', 'tab:red', 'tab:purple', 'tab:brown', 'tab:gray']
+
+    for metric, metric_a in zip(metrics, metrics_alias):
+
+        min = 1
+        index = -len(methods)/2+0.5
+
+        for idx, (clf_name, method_a) in enumerate(zip(methods, methods_alias)):
+            plot_data = []
+            for stream_name in streams_:
+                rs_data = []
+                for rs in random_states:
+                    if data[stream_name, clf_name, metric, rs] is None:
+                        continue
+
+                    rs_data.append(np.mean(data[stream_name, clf_name, metric, rs]))
+                plot_data.append(np.mean(rs_data))
+            if min > np.min(plot_data):
+                min = np.min(plot_data)
+            x = np.arange(len(streams_))
+            plt.bar(x+width*index, plot_data, width, label=method_a, color=colors[idx])
+            # plt.plot(x, plot_data, label=method_a)
+            index += 1
+
+        filename = "results/plots_new/%s/%s" % (experiment_name, metric)
+        if not os.path.exists("results/plots_new/%s/" % (experiment_name)):
+            os.makedirs("results/plots_new/%s/" % (experiment_name))
+
+        plt.legend()
+        plt.ylabel(metric_a)
+        plt.xlabel("Imbalance ratio [%]")
+        plt.ylim(0, 1)
+        # plt.title(metric_a.upper()+" "+experiment_name.split('/')[-1].upper())
+        plt.legend(loc="upper center", bbox_to_anchor=(0.5, 1.15), ncol=len(methods_alias))
+        plt.xticks(range(len(streams_)), labels=noise)
+        plt.gcf().set_size_inches(7, 4)
+        plt.savefig(filename+".png", bbox_inches='tight')
+        plt.savefig(filename+".eps", format='eps', bbox_inches='tight')
+        plt.clf()
+        plt.close()
+
+
+#
+# def plot_streams_nexp(methods, streams, metrics, experiment_name, methods_alias=None, metrics_alias=None):
+#     rcdefaults()
+#
+#     if methods_alias is None:
+#         methods_alias = methods
+#     if metrics_alias is None:
+#         metrics_alias = metrics
+#
+#     data = {}
+#
+#     random_states = []
+#     streams_ = []
+#     noise = []
+#     for stream_name in streams:
+#         random_states.append(stream_name.split("_")[-1])
+#         streams_.append("_".join(stream_name.split("_")[0:-1]))
+#         noise.append(stream_name.split("_")[-2][1:])
+#
+#     random_states = list(dict.fromkeys(random_states))
+#     streams_ = list(dict.fromkeys(streams_))
+#     noise = list(dict.fromkeys(noise))
+#
+#     for stream_name in streams:
+#         for clf_name in methods:
+#             for metric in metrics:
+#                 try:
+#                     filename = "results/raw_metrics/%s/%s/%s/%s.csv" % (experiment_name, stream_name, metric, clf_name)
+#                     data["_".join(stream_name.split("_")[0:-1]), clf_name, metric, stream_name.split("_")[-1]] = np.genfromtxt(filename, delimiter=',', dtype=np.float32)
+#                 except Exception:
+#                     data[stream_name, clf_name, metric] = None
+#                     print("Error in loading data", stream_name, clf_name, metric)
+#
+#     width = 1/(len(methods)+1)
+#
+#     for metric, metric_a in zip(metrics, metrics_alias):
+#
+#         min = 1
+#         index = -len(methods)/2+0.5
+#
+#         for clf_name, method_a in zip(methods, methods_alias):
+#             plot_data = []
+#             for stream_name in streams_:
+#                 rs_data = []
+#                 for rs in random_states:
+#                     if data[stream_name, clf_name, metric, rs] is None:
+#                         continue
+#
+#                     rs_data.append(np.mean(data[stream_name, clf_name, metric, rs]))
+#                 plot_data.append(np.mean(rs_data))
+#             if min > np.min(plot_data):
+#                 min = np.min(plot_data)
+#             x = np.arange(len(streams_))
+#             plt.bar(x+width*index, plot_data, width, label=method_a)
+#             # plt.plot(x, plot_data, label=method_a)
+#             index += 1
+#
+#         filename = "results/plots/%s/%s" % (experiment_name, metric)
+#         if not os.path.exists("results/plots/%s/" % (experiment_name)):
+#             os.makedirs("results/plots/%s/" % (experiment_name))
+#
+#         plt.legend()
+#         plt.ylabel(metric_a)
+#         plt.xlabel("Noise [%]")
+#         plt.ylim(bottom=min-0.05)
+#         plt.title(metric_a.upper()+" "+experiment_name.split('/')[-1].upper())
+#         plt.legend(loc=3)
+#         plt.xticks(range(len(streams_)), labels=noise)
+#         plt.gcf().set_size_inches(6, 4)
+#         plt.savefig(filename+".png", bbox_inches='tight')
+#         plt.savefig(filename+".eps", format='eps', bbox_inches='tight')
+#         plt.clf()
+#         plt.close()
+#
+#
+# def plot_streams_bexp(methods, streams, metrics, experiment_name, methods_alias=None, metrics_alias=None):
     rcdefaults()
 
     if methods_alias is None:

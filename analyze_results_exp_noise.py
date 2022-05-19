@@ -34,10 +34,10 @@ methods_alias = [
                 ]
 
 metrics_alias = [
-           "Gmean",
+           "$Gmean_s$",
            "Precision",
            "Recall",
-           "Specifity",
+           "Specificity",
           ]
 
 metrics = [

@@ -13,9 +13,9 @@ streams.sort()
 
 method_names = [
                 "DSE",
-                "KMeanClustering",
                 "LearnppCDS",
                 "LearnppNIE",
+                "KMeanClustering",
                 "REA",
                 "OUSE",
                 # "MLPClassifier",
@@ -23,19 +23,19 @@ method_names = [
 
 methods_alias = [
                 "DSE",
-                "KMC",
                 "L++CDS",
                 "L++NIE",
+                "KMC",
                 "REA",
                 "OUSE",
                 # "MLPC",
                 ]
 
 metrics_alias = [
-           "Gmean",
+           "$Gmean_s$",
            "Precision",
            "Recall",
-           "Specifity",
+           "Specificity",
           ]
 
 metrics = [
